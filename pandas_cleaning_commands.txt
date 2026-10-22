@@ -1,0 +1,52 @@
+PANDAS DATA CLEANING COMMANDS — SALES DASHBOARD
+================================================
+
+1) Import Pandas
+   import pandas as pd
+
+2) Read CSV
+   df = pd.read_csv("sales_data_raw_sample.csv")
+
+3) Inspect dataset
+   df.head()
+   df.shape
+   df.info()
+   df.describe(include="all")
+   df.isna().sum()
+
+4) Standardize column names
+   df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_", regex=False)
+
+5) Remove duplicate orders
+   df = df.drop_duplicates(subset=["order_id"], keep="first")
+
+6) Remove spaces from text
+   df["customer_name"] = df["customer_name"].astype("string").str.strip()
+   df["region"] = df["region"].astype("string").str.strip().str.title()
+
+7) Convert dates safely
+   df["order_date"] = pd.to_datetime(df["order_date"], errors="coerce")
+
+8) Convert numeric columns
+   df["quantity"] = pd.to_numeric(df["quantity"], errors="coerce")
+   df["unit_price"] = pd.to_numeric(df["unit_price"], errors="coerce")
+
+9) Handle missing required fields
+   df = df.dropna(subset=["order_id", "customer_name", "order_date"])
+
+10) Filter invalid values
+    df = df[(df["quantity"] > 0) & (df["unit_price"] > 0)]
+
+11) Recalculate Sales
+    df["sales"] = df["quantity"] * df["unit_price"]
+
+12) Create month and profit margin
+    df["month"] = df["order_date"].dt.month_name()
+    df["profit_margin_pct"] = (df["profit"] / df["sales"] * 100).where(df["sales"] != 0, 0)
+
+13) Export cleaned data
+    df.to_csv("sales_data_cleaned.csv", index=False)
+
+IMPORTANT:
+- Commands are examples for this sample dataset. Always inspect the real data first.
+- Do not automatically delete or replace values in a real business dataset without checking business rules.

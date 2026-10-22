@@ -1,0 +1,23 @@
+PYTHON BASICS USED IN THIS PROJECT
+===================================
+
+# Import the library
+import pandas as pd
+
+# Load data
+df = pd.read_csv("sales_data_raw_sample.csv")
+
+# View first rows
+print(df.head())
+
+# Count rows and columns
+print(df.shape)
+
+# Check data types and null values
+df.info()
+print(df.isnull().sum())
+
+# Save output
+df.to_csv("sales_data_cleaned.csv", index=False)
+
+Note: Most data-cleaning operations in this project are performed with Pandas.

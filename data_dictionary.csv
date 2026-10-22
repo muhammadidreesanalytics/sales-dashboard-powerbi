@@ -1,0 +1,13 @@
+Column,Meaning,Expected Type
+Order_ID,Unique order identifier,Integer
+Customer_Name,Customer name,Text
+Product_Name,Product purchased,Text
+Category,Product category,Text
+Quantity,Units purchased,Integer
+Unit_Price,Price per unit,Numeric
+Sales,Quantity multiplied by unit price,Numeric
+Profit,Profit amount (sample estimate),Numeric
+Region,Sales region,Text
+City,City associated with order,Text
+Order_Date,Order date,Date
+Payment_Method,Payment channel,Text
